@@ -25,13 +25,12 @@ def uploader():
     # print(request.files)
     # print(request.data)
     # print(request.form)
-    if 'rawFile' not in request.form:
-        print('No Files')
-        abort(400)
-    else:
-        reason = request.form['reason']
-        rawFileData = request.form['rawFile']
-        filename = datetime.today().isoformat()+"_"+secure_filename(reason)
-        f = open(OUTDIR+filename, "w")
-        f.write(rawFileData)
-        return 'file data of length %s written to %s' % (len(rawFileData), filename)
+    print(request.args)
+    reason = request.args["reason"]
+    reason = "Mama Mia" if not reason else reason
+    rawFileData = request.data
+    print("About to write incoming request of length %s" % len(rawFileData))
+    filename = datetime.today().strftime("%Y-%m-%d")+"_"+secure_filename(reason)[:10]
+    f = open(OUTDIR+filename, "wb")
+    f.write(rawFileData)
+    return 'file data of length %s written to %s' % (len(rawFileData), filename)
