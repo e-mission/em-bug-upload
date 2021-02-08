@@ -1,0 +1,11 @@
+FROM python:3.9
+
+WORKDIR /dev_src
+COPY requirements.txt ./
+RUN echo $PWD
+RUN ls
+RUN pip install --no-cache-dir -r requirements.txt
+ENV FLASK_APP=uploader.py
+ENV FLASK_ENV=development
+CMD [ "tail", "-f", "/dev/null" ]
+# CMD [ "flask", "run", "--host=0.0.0.0" ]

@@ -1,0 +1,11 @@
+click==7.1.2
+Flask==1.1.2
+Flask-Cors==3.0.10
+Flask-Limiter==1.4
+Flask-Uploads @ git+https://github.com/maxcountryman/flask-uploads.git@f66d7dc93e684fa0a3a4350a38e41ae00483a796
+itsdangerous==1.1.0
+Jinja2==2.11.3
+limits==1.5.1
+MarkupSafe==1.1.1
+six==1.15.0
+Werkzeug==1.0.1

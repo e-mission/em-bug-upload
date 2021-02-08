@@ -1,0 +1,17 @@
+version: "3"
+services:
+  uploader:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      # LOGS in numbers
+      - "5647:5000"
+    volumes:
+      - $PWD:/dev_src
+      - ./logs/:/logs
+    networks:
+       - emission
+
+networks:
+  emission:
