@@ -12,7 +12,7 @@ cors = CORS(app)
 limiter = Limiter(
     app,
     key_func=util.get_remote_address,
-    default_limits=["1000 per hour"]
+    default_limits=["2 per hour"]
 )
 
 OUTDIR="/phonelogs/"
@@ -27,10 +27,10 @@ def uploader():
     # print(request.form)
     print(request.args)
     reason = request.args["reason"]
-    reason = "Mama Mia" if not reason else reason
+    tz = request.args["tz"]
     rawFileData = request.data
     print("About to write incoming request of length %s" % len(rawFileData))
-    filename = datetime.today().strftime("%Y-%m-%d")+"_"+secure_filename(reason)[:10]
+    filename = datetime.today().strftime("%Y-%m-%d")+"_"+secure_filename(reason)[:10]+"_"+secure_filename(tz)+".loggerDB"
     f = open(OUTDIR+filename, "wb")
     f.write(rawFileData)
     return 'file data of length %s written to %s' % (len(rawFileData), filename)
