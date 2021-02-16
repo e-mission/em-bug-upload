@@ -7,5 +7,4 @@ RUN ls
 RUN pip install --no-cache-dir -r requirements.txt
 ENV FLASK_APP=uploader.py
 ENV FLASK_ENV=development
-CMD [ "tail", "-f", "/dev/null" ]
-# CMD [ "flask", "run", "--host=0.0.0.0" ]
+CMD [ "flask", "run", "--host=0.0.0.0" ]

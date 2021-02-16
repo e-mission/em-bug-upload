@@ -1,6 +1,6 @@
 version: "3"
 services:
-  uploader:
+  dev-uploader:
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -9,7 +9,7 @@ services:
       - "5647:5000"
     volumes:
       - $PWD:/dev_src
-      - ./logs/:/logs
+      - ./phonelogs/:/phonelogs
     networks:
        - emission
 
