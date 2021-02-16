@@ -3,7 +3,7 @@ services:
     build: .
     ports:
       # LOGS in numbers
-      - "5647:5000"
+      - "5647:8080"
     volumes:
       - ./phonelogs/:/phonelogs
     networks:

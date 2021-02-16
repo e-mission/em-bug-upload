@@ -23,6 +23,37 @@ However, it only supports `POST`, so it is not accessible via the browser and yo
 $ docker-compose up
 ```
 
-You can also copy-paste it into an existing docker-compose file. In that case,
-you can remove the `network` to have it use the existing network.  A full
-explanation of `docker-compose` settings is beyond the scope of this project.
+You can copy-paste it into an existing docker-compose file. In that case, you
+can remove the `network` entry to have it use the existing network.
+
+You can also use it as a separate `docker-compose.yml` file. In that case, you
+would use an external network.
+
+```
+ networks:
+   emission:
++    external:
++      name: <main-docker-compose-network>
+```
+
+This even works with an ngnix proxy by removing the port mapping and adding
+`VIRTUAL_HOST` entries
+
+```
+ services:
+   uploader:
+     build: .
+-    ports:
+-      # LOGS in numbers
+-      - "5647:8080"
+     volumes:
+       - ./phonelogs/:/phonelogs
++    environment:
++      - VIRTUAL_HOST=host.domain
++      - LETSENCRYPT_HOST=host.domain
+     networks:
+       - emission
+```
+
+A full explanation of `docker-compose` settings is beyond the scope of this
+project.
