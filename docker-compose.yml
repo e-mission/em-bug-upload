@@ -1,0 +1,13 @@
+services:
+  uploader:
+    build: .
+    ports:
+      # LOGS in numbers
+      - "5647:5000"
+    volumes:
+      - ./phonelogs/:/phonelogs
+    networks:
+      - emission
+
+networks:
+  emission:
